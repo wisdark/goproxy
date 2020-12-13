@@ -14,8 +14,11 @@ The GoProxy is a high-performance http proxy, https proxy, socks5 proxy, ss prox
 ---
 
 ### [点击我观看视频教程](https://space.bilibili.com/472844633)
-- [中文说明](https://github.com/snail007/goproxy/blob/master/README_ZH.md)
-- [中文手册](https://snail007.github.io/goproxy/manual/zh/)
+- [中文介绍（必看）](https://github.com/snail007/goproxy/blob/master/README_ZH.md)
+- [下载地址（国外）](https://github.com/snail007/goproxy/releases)
+- [下载地址（国内）](https://mirrors.host900.com/snail007/goproxy/)
+- [官方手册（国外）](https://snail007.github.io/goproxy/manual/zh/)
+- [官方手册（国内）](https://snail.gitee.io/proxy/manual/zh/)
 - [Download](https://github.com/snail007/goproxy/releases)
 - [Desktop Edition, Web Console : ProxyAdmin](https://github.com/snail007/proxy_admin_free)
 - [Android Global Proxy Edition](https://github.com/snail007/goproxy-ss-plugin-android) 
@@ -149,7 +152,7 @@ chmod +x install_commercial.sh
 Proxy is licensed under GPLv3 license.
 
 ## Contact
-Official QQ exchange group: 189618940
+Official QQ exchange group: 42805407
 
 ## Donation
 If the proxy helps you solve a lot of problems, you can better support the proxy through the donation below.
@@ -194,7 +197,7 @@ If you have customized, business needs, please send an email to `arraykeys@gmail
 This manual describes the functions, all of which are included in the commercial version; the free version of advanced functional parameters such as authentication is not included;  
 If you encounter some commands when you use the free version to execute some commands, a prompt similar to the following xxx parameter does not exist, indicating that this parameter is a function of the commercial version.   
 `err: unknown long flag '-a'`   
-Comparison between the features of the free version and the commercial version, detailed operations on how to purchase and use the commercial version [please click here to view]   
+Comparison between the features of the free version and the commercial version, detailed operations on how to purchase and use the commercial version [please click here to view](https://snail.gitee.io/proxy/page/free_vs_commercial_en/)   
 
 ## First Start  
 
@@ -410,6 +413,12 @@ The proxy's blocked, direct, stop, only, hosts, resolve.rules, rewriter.rules, i
 ### 14.Concurrent client connections
 
 socks5\sps\http proxies, the parameter that controls the number of concurrent client connections is: `--max-conns-rate`, which controls the maximum number of client connections per second, default: 20, 0 is unlimited
+
+### 15 Listen on multiple ports
+ 
+"tcp / http / socks / sps" supports listen on multiple ports and range ports.
+Under normal circumstances, it is sufficient to listen on one port, but if you need to listen on multiple ports, the -p parameter is supported.
+The format is: `-p 0.0.0.0:80,0.0.0.0:443,.0.0.0.0:8000-9000,:5000-6000`, more The bindings can be separated by commas.
 
 ## 1.HTTP Proxies  
 
@@ -1381,11 +1390,7 @@ Then run a sps node on the pc and execute:
 
 carry out.  
 
-### 6.6 Listening to multiple ports  
-In general, listening to a port is fine, but if you need to listen to both ports 80 and 443 as a reverse proxy, the -p parameter is supported.  
-The format is: `-p 0.0.0.0:80, 0.0.0.0:443`, multiple bindings can be separated by commas.  
-
-### 6.7 Authentication  
+### 6.6 Authentication  
 Sps supports http(s)\socks5 proxy authentication, which can be cascaded and has four important pieces of information:  
 1: The user sends the authentication information `user-auth`.  
 2: Set the local authentication information `local-auth`.  
@@ -1413,7 +1418,7 @@ Subordinate: `proxy sps -S http -T tcp -P 127.0.0.1:8080 -A "user1:pass1" -t tcp
 
 For more details on certification, please refer to `9.API Certification` and `10.Local Certification`  
 
-### 6.8 Multiple Upstream  
+### 6.7 Multiple Upstream  
 
 If there are multiple upstreams, they can be specified by multiple -Ps.  
 
@@ -1450,7 +1455,7 @@ You can also set the `encryption method` and `password` of `ws\wss` by appending
 
 `#1` When multiple upper-level load balancing is a weighting strategy, the weights are rarely used.  
 
-### 6.9 Custom Encryption  
+### 6.8 Custom Encryption  
 The proxy sps proxy can encrypt tcp data through tls standard encryption and kcp protocol on top of tcp, in addition to support after tls and kcp  
 Custom encryption, that is, custom encryption and tls|kcp can be used in combination, internally using AES256 encryption, only need to define it when using  
 A password can be used, the encryption is divided into two parts, one part is whether the local (-z) encryption and decryption, and the part is the encryption and decryption with the upstream (-Z) transmission.  
@@ -1480,7 +1485,7 @@ Local three-level execution:
 `proxy sps -T tcp -P 3.3.3.3:8888 -Z other_password -t tcp -p :8080`  
 In this way, when the website is accessed through the local agent 8080, the target website is accessed through encrypted transmission with the upstream.  
 
-### 6.10 Compressed transmission  
+### 6.9 Compressed transmission  
 The proxy sps proxy can encrypt tcp data through custom encryption and tls standard encryption and kcp protocol on top of tcp. It can also be used before custom encryption.  
 Compress the data, that is, the compression function and the custom encryption and tls|kcp can be used in combination, and the compression is divided into two parts.  
 Part of it is local (-m) compression transmission, and part is whether the transmission with the upstream (-M) is compressed.  
@@ -1508,7 +1513,7 @@ Local three-level execution:
 `proxy sps -T tcp -P 3.3.3.3:8888 -M -t tcp -p :8080`  
 In this way, when the website is accessed through the local agent 8080, the target website is accessed through compression with the upstream.  
 
-### 6.11 Disabling the protocol  
+### 6.10 Disabling the protocol  
 By default, SPS supports http(s) and socks5 two proxy protocols. We can disable a protocol by parameter.  
 For example:  
 1. Disable the HTTP(S) proxy function to retain only the SOCKS5 proxy function, parameter: `--disable-http`.  
@@ -1517,7 +1522,7 @@ For example:
 1. Disable the SOCKS5 proxy function to retain only the HTTP(S) proxy function, parameter: `--disable-socks`.  
 `proxy sps -T tcp -P 3.3.3.3:8888 -M -t tcp -p :8080 --disable-socks`  
 
-### 6.12 Speed ​​limit  
+### 6.11 Speed ​​limit  
 
 Suppose there is a SOCKS5 upstream:  
 
@@ -1529,24 +1534,24 @@ SPS lower level, speed limit 100K
 
 It can be specified by the `-l` parameter, for example: 100K 2000K 1M . 0 means no limit.  
 
-### 6.13 Specifying Outgoing IP  
+### 6.12 Specifying Outgoing IP  
 
 The `--bind-listen` parameter can be used to open the client connection with the portal IP, and use the portal IP as the outgoing IP to access the target website. If the ingress IP is an intranet IP, the egress IP does not use the ingress IP.  
 
 `proxy sps -S socks -P 2.2.2.2:33080 -T tcp -Z password -l 100K -t tcp --bind-listen -p :33080`  
 
-### 6.14 Certificate parameters use base64 data  
+### 6.13 Certificate parameters use base64 data  
 
 By default, the -C, -K parameter is the path to the crt certificate and the key file.  
 
 If it is the beginning of base64://, then the latter data is considered to be base64 encoded and will be used after decoding.  
 
-### 6.15 Independent Service  
+### 6.14 Independent Service  
 The sps function does not force a upstream to be specified. When the upstream is empty, the sps itself can complete the full proxy function. If the upstream is specified, the upstream connection target is used as before.  
 The following command is to open the http(s)\ss\socks service with one click.  
 `proxy sps -p :33080`  
 
-### 6.16 Target Redirection  
+### 6.15 Target Redirection  
 The https(s)\socks5\ss proxy function provided by the sps function, the client connects to the specified "target" through the sps proxy. This "target" is generally a website or an arbitrary tcp address.  
 The website "target" is generally foo.com: 80, foo.com: 443, sps supports the use of the --rewrite parameter to specify a "target" redirection rule file, redirect the target, the client is non-perceived,  
 For example, if you redirect to "target": demo.com:80 to 192.168.0.12:80, then the client visits the website demo.com, in fact, the website service provided by 192.168.0.12.  
@@ -1561,7 +1566,7 @@ Www.a.com:80 10.0.0.2:8080
 
 When sps is an independent service, an additional local socks5 service will be opened to occupy a random port. Now the parameter `--self-port` can be manually specified when needed. The default is 0 to use random.
 
-### 6.17 Fixed UDP PORT
+### 6.16 Fixed UDP PORT
 
 By default, the port number of the UDP function of ss's socks5 is specified by the `rfc1982 draft`. It is randomly specified during the protocol handshake process and does not need to be specified in advance.
 
@@ -1573,7 +1578,7 @@ It should be noted that the ss function of sps also has UDP function, and the UD
 
 To specify a port that is different from the tcp port.
 
-### 6.18 iptables 透明代理  
+### 6.17 iptables 透明代理  
 The sps mode supports the iptables transparent forwarding support of the Linux system, which is commonly referred to as the iptables transparent proxy. If a iptables transparent proxy is performed on the gateway device, the device that is connected through the gateway can realize a non-aware proxy.
 
 Example start command:
@@ -1622,7 +1627,7 @@ iptables -t nat -A OUTPUT -p tcp -j PROXY
 - Delete the specified user-defined chain iptables -X chain name e.g. iptables -t nat -X PROXY  
 - Delete rule from selected chain iptables -D chain name rule details e.g. iptables -t nat -D PROXY -d 223.223.192.0/255.255.240.0 -j RETURN  
 
-### 6.19 Help  
+### 6.18 Help  
 
 `proxy help sps`  
 
@@ -2015,6 +2020,9 @@ agent: is a function parameter, which means running agent mode.
 
 -i ： The unique identifier of the agent ensures that each agent is different. The "unique identifier" specified here is used when adding a node to the control panel. The IP is filled with this "unique identifier".
 If -i is not specified, the default is empty, and the control panel adds the IP field to fill in: the agent's internet IP.
+
+-u: proxy parameter, empty by default. You can specify an agent, and the agent will communicate with the cluster through this agent.  
+     The format is the same as that of `--jumper`. For details, please refer to the `--jumper` part of the manual. 
 
 notice:
 
