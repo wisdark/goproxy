@@ -4,17 +4,22 @@
 </a>
 
 ## GOPROXY简介
-<img src="https://cdn.jsdelivr.net/gh/snail007/goproxy@master/doc/images/logo.jpg" width="200" height="auto"/>  
-一款轻量级、功能强大、高性能的http代理、https代理、socks5代理、内网穿透代理服务器、ss代理、游戏盾、游戏代理，支持API代理认证。websocke代理、tcp代理、udp代理、socket代理、高防服务器。支持正向代理、反向代理、透明代理、TCP内网穿透、UDP内网穿透、HTTP内网穿透、HTTPS内网穿透、https代理负载均衡、http代理负载均衡、socks5代理负载均衡、socket代理负载均衡、ss代理负载均衡、TCP/UDP端口映射、SSH中转、TLS加密传输、协议转换、防污染DNS代理，限速，限连接数。官方QQ交流群: 608062193。 
+
+<div align="center">
+<img src="https://mirrors.host900.com/https://raw.githubusercontent.com/snail007/goproxy/master/doc/images/logo.jpg" width="500" height="auto"/>
+
+[![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/snail007/goproxy/) [![license](https://img.shields.io/github/license/snail007/goproxy.svg?style=plastic)]() [![download_count](https://img.shields.io/github/downloads/snail007/goproxy/total.svg?style=plastic)](https://github.com/snail007/goproxy/releases) [![download](https://img.shields.io/github/release/snail007/goproxy.svg?style=plastic)](https://github.com/snail007/goproxy/releases)
 
 ---
 
-[![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/snail007/goproxy/) [![license](https://img.shields.io/github/license/snail007/goproxy.svg?style=plastic)]() [![download_count](https://img.shields.io/github/downloads/snail007/goproxy/total.svg?style=plastic)](https://github.com/snail007/goproxy/releases) [![download](https://img.shields.io/github/release/snail007/goproxy.svg?style=plastic)](https://github.com/snail007/goproxy/releases)  
+GoProxy是一款轻量级、功能强大、高性能的http代理、https代理、socks5代理、内网穿透代理服务器、ss代理、游戏盾、游戏代理，支持API代理认证。websocke代理、tcp代理、udp代理、socket代理、高防服务器。支持正向代理、反向代理、透明代理、TCP内网穿透、UDP内网穿透、HTTP内网穿透、HTTPS内网穿透、https代理负载均衡、http代理负载均衡、socks5代理负载均衡、socket代理负载均衡、ss代理负载均衡、TCP/UDP端口映射、SSH中转、TLS加密传输、协议转换、防污染DNS代理，限速，限连接数。官方QQ交流群: 608062193。
+
+</div>
 
 ---
+
 ### [点击我观看视频教程](https://space.bilibili.com/472844633)
 - [下载地址](https://github.com/snail007/goproxy/releases)
-- [使用必读](https://github.com/snail007/goproxy/blob/master/README_ZH.md)
 - [参考手册](https://snail007.host900.com/goproxy/manual/zh/)
 - [桌面版](https://github.com/snail007/proxy_admin_free/blob/master/README_ZH.md)
 - [安卓全局代理版](https://github.com/snail007/goproxy-ss-plugin-android) 
@@ -2114,7 +2119,8 @@ if($ok){
     header("ipconns:2000");  
     header("userrate:3000");  
     header("iprate:8000");  
-    header("UPSTREAM:http://127.0.0.1:3500?parent-type=tcp");  
+    header("upstream:http://127.0.0.1:3500?parent-type=tcp");  
+    header("outgoing:1.1.1.1");  
     header("HTTP/1.1 204 No Content");  
 }
 ```  
@@ -2126,6 +2132,7 @@ ipconns：用户IP的最大连接数，不限制为0或者不设置这个头部�
 userrate：用户的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
 iprate：用户IP的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
 upstream：使用的上级，没有为空，或者不设置这个头部。
+outgoing: 使用的出口IP，这个设置，只有在upstream为空的的时候才有效，这里设置的IP必须是proxy所在机器具有的IP。
 
 #### 提示
 
@@ -2159,6 +2166,7 @@ upstream支持socks5、http(s)代理，支持认证，格式：`protocol://a:b@2
 6. ca : 上级底层tls传输类型的ca证书文件经过base64编码后的字符串。
 7. cert : 上级底层tls传输类型的证书文件经过base64编码后的字符串。
 8. key : 上级底层tls传输类型的证书密钥文件经过base64编码后的字符串。
+9. luminati:上级是否是luminati代理，可以是：true | false。
 
 ### 流量上报/流量统计/流量限制
 
@@ -2434,6 +2442,10 @@ Luminati提供了高质量稳定的住宅IP可以做很多事情，但是价格�
 
 提醒，此种做法，有可能带来Luminati限制你的账号风险，VPS的IP也有可能被可能Luminati屏蔽导致转换不能工作，风险自负。
 
+另外上面只能把luminati的http代理转成自定义认证的二级http代理，那么如如果要把luminati的http代理转成http(s)+socks5代理可以使用参数`--luminati`。
+
+上面步骤 `1.` 执行的命令改为：`proxy sps -p :7777 --luminati --disable-ss -a user1:pass1 -a user2:pass2 -P http://username:password@xxx.com:8888`
+
 ## 17.典型用法-认证转为无认证
 
 通过proxy可以把有认证功能的代理转成没有认证的代理。
@@ -2475,3 +2487,10 @@ timeout=5000
 2. 访问 `http://1.1.1.1:7777/snail007/` ，如果一切正常，就把命令加上后台运行参数即可。
 3. 命令改成：`proxy rhttp -c github.toml --daemon --log /tmp/github.log`  
 4. 此功能需要`proxy`版本大于等于`v11.2`。
+
+如果是想使用域名比如a.com，那么：
+1. 把a.com解析到IP 1.1.1.1。
+2. 把`bind="http://1.1.1.1:7777/"` 改成 `bind="http://a.com:7777/"`
+3. 访问 `http://a.com:7777/snail007/` 即可。
+4. 如果想使用默认80端口，配置bind为 `bind="http://a.com/"` 。
+5. 访问 `http://a.com/snail007/` 即可。
