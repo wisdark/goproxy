@@ -1,8 +1,3 @@
-## 稳定优质IP代理商推荐
-<a href="https://brightdata.grsm.io/9gnzdzgpvtmo">
-<img width="auto" height="100" src="https://mirrors.host900.com/https://raw.githubusercontent.com/snail007/goproxy/master/doc/images/brightdata.png"/>
-</a>
-
 ## GOPROXY简介
 
 <div align="center">
@@ -12,7 +7,7 @@
 
 ---
 
-GoProxy是一款轻量级、功能强大、高性能的http代理、https代理、socks5代理、内网穿透代理服务器、ss代理、游戏盾、游戏代理，支持API代理认证。websocke代理、tcp代理、udp代理、socket代理、高防服务器。支持正向代理、反向代理、透明代理、TCP内网穿透、UDP内网穿透、HTTP内网穿透、HTTPS内网穿透、https代理负载均衡、http代理负载均衡、socks5代理负载均衡、socket代理负载均衡、ss代理负载均衡、TCP/UDP端口映射、SSH中转、TLS加密传输、协议转换、防污染DNS代理，限速，限连接数。官方QQ交流群: 608062193。
+GoProxy是一款轻量级、功能强大、高性能的http代理、https代理、socks5代理、内网穿透代理服务器、ss代理、游戏盾、游戏代理，支持API代理认证。websocket代理、tcp代理、udp代理、socket代理、高防服务器。支持正向代理、反向代理、透明代理、TCP内网穿透、UDP内网穿透、HTTP内网穿透、HTTPS内网穿透、https代理负载均衡、http代理负载均衡、socks5代理负载均衡、socket代理负载均衡、ss代理负载均衡、TCP/UDP端口映射、SSH中转、TLS加密传输、协议转换、防污染DNS代理，限速，限连接数。官方QQ交流群: 608062193。
 
 </div>
 
@@ -223,12 +218,6 @@ Proxy is licensed under GPLv3 license。
 
 ## goproxy使用手册
 
-
-### 稳定优质IP代理商推荐
-
-<a href="https://brightdata.grsm.io/9gnzdzgpvtmo">
-<img width="auto" height="100" src="https://mirrors.host900.com/https://raw.githubusercontent.com/snail007/goproxy/master/doc/images/brightdata.png"/>
-</a>
 
 ## 如何安装
 
@@ -1280,10 +1269,6 @@ nat类型判断,方便查看网络是否支持p2p，可以执行：`proxy tools 
 
 SOCKS5代理，支持CONNECT，UDP协议，不支持BIND，支持用户名密码认证。
 
-***如果你的VPS是阿里云，腾讯云这种VPS，就是ifconfig看不见你的公网IP，只能看见内网IP，***
-
-***那么需要加上`-g VPS公网IP`参数，SOCKS5代理的UDP功能才能正常工作。***
-
 ***socks5的udp功能默认关闭，可以通过--udp开启，默认是握手随机端口，可以通过固定一个端口提高性能， 通过参数--udp-port 0设置，0代表随机选择一个空闲端口，也可以手动指定一个具体端口。***
 
 ### 5.1 普通SOCKS5代理
@@ -1371,15 +1356,11 @@ SOCKS5代理，支持CONNECT，UDP协议，不支持BIND，支持用户名密码
 KCP协议需要--kcp-key参数设置一个密码用于加密解密数据
 
 一级HTTP代理(VPS，IP:22.22.22.22)  
-`proxy socks -t kcp -p ":38080" --kcp-key mypassword -g 22.22.22.22`
+`proxy socks -t kcp -p ":38080" --kcp-key mypassword`
 
 二级HTTP代理(本地Linux)  
 `proxy socks -t tcp -p ":8080" -T kcp -P "22.22.22.22:38080" --kcp-key mypassword`  
 那么访问本地的8080端口就是访问VPS上面的代理端口38080，数据通过kcp协议传输。
-
-提示:
-
-当本地使用kcp协议时,需要用-g指定vps公网IP,socks5的UDP功能才能正常使用.这时-g是返回给客户端的UDP地址中的IP地址.
 
 ### 5.9.自定义DNS
 
@@ -1567,8 +1548,6 @@ rc4-md5-6 ， salsa20 ， xchacha20
 ```
 
 提示:
-
-当本地使用kcp协议时,需要用-g指定vps公网IP,socks5的UDP功能才能正常使用.这时-g是返回给客户端的UDP地址中的IP地址.
 
 ss的udp功能默认关闭，可以通过--ssudp开启。socks5的udp功能默认关闭，可以通过--udp开启，默认是握手随机端口，可以通过固定一个端口提高性能， 通过参数--udp-port
 0设置，0代表随机选择一个空闲端口，也可以手动指定一个具体端口。
@@ -1823,6 +1802,11 @@ sps下级，限速100K
 - 如果网卡IP发生变化，也会实时生效。
 - 可以通过`--bind-refresh`参数，指定刷新本地网卡信息的间隔，默认`5`，单位秒。
 
+#### 提示
+- sps提供的ss服务的udp功能不支持指定出口IP。
+- sps提供的http(s)/socks5/ss均支持指定出口ip。
+- sps提供的socks5的udp功能支持指定出口ip。
+
 ### 6.13 证书参数使用base64数据
 
 默认情况下-C，-K参数是crt证书和key文件的路径，
@@ -2060,8 +2044,8 @@ proxy的http(s)/socks5/sps代理功能，支持通过API控制用户对代理对
 
 ### 通过API可以干什么？
 
-- 用户维度，控制单个连接速率，控制最大连接数。
-- IP维度，控制单个连接速率，控制最大连接数。
+- 用户维度，控制单个连接速率，控制最大连接数，控制连接的QPS。
+- IP维度，控制单个连接速率，控制最大连接数，控制连接的QPS。
 - 动态上级，可以根据用户或者客户端IP，动态的从API获取其上级，支持http(s)/socks5/ss上级。
 - 认证每一个连接，无论是否要求客户端认证。
 - 缓存认证结果，时间可以设置，减轻API压力。
@@ -2082,6 +2066,8 @@ proxy的http(s)/socks5/sps代理API功能，通过`--auth-url`和`--auth-nouser`
 `service` 代理类型，分为：http、socks。  
 `sps` 代理是否是sps提供的，1:是，0:否。  
 `target`  客户端要访问的目标，如果是http(s)代理，target是访问的具体url；如果是socks5代理，target是空。
+
+**客户端使用socks5的udp传输时，根据协议，服务端`proxy`会通过`--auth-url`认证两次，一次是tcp，一次是udp。**
 
 #### 示例
 
@@ -2119,20 +2105,24 @@ if($ok){
     header("ipconns:2000");  
     header("userrate:3000");  
     header("iprate:8000");  
+    header("userqps:5");
+    header("ipqps:2");
     header("upstream:http://127.0.0.1:3500?parent-type=tcp");  
     header("outgoing:1.1.1.1");  
     header("HTTP/1.1 204 No Content");  
 }
 ```  
 
-#### 解释
+#### HTTP HEADER 头部字段解释
 
-userconns：用户的最大连接数，不限制为0或者不设置这个头部。  
-ipconns：用户IP的最大连接数，不限制为0或者不设置这个头部。  
-userrate：用户的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
-iprate：用户IP的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
-upstream：使用的上级，没有为空，或者不设置这个头部。
-outgoing: 使用的出口IP，这个设置，只有在upstream为空的的时候才有效，这里设置的IP必须是proxy所在机器具有的IP。
+`userconns`：用户的最大连接数，不限制为0或者不设置这个头部。  
+`ipconns`：IP的最大连接数，不限制为0或者不设置这个头部。   
+`userrate`：用户的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
+`iprate`：IP的单个TCP连接速率限制，单位：字节/秒，不限制为0或者不设置这个头部。  
+`userqps`：用户每秒可以建立的最大连接数，不限制为0或者不设置这个头部。  
+`ipqps`：IP每秒可以建立的最大连接数，不限制为0或者不设置这个头部。  
+`upstream`：使用的上级，没有为空，或者不设置这个头部。   
+`outgoing`: 使用的出口IP，这个设置，只有在upstream为空的的时候才有效，这里设置的IP必须是proxy所在机器具有的IP。  
 
 #### 提示
 
@@ -2214,23 +2204,32 @@ proxy的http(s)/socks5/sps代理功能支持`控制接口`,可以通过参数`--
 
 #### 控制接口请求说明
 
-proxy会向控制接口URL发送一个HTTP POST请求，表单数据中有两个字段：user和ip。
+proxy会向控制接口URL发送一个HTTP POST请求，`表单`数据中有三个字段：user、ip、conns，`conns`这个字段需要proxy版本大于等于`12.2`才有。
 
-user：当前连接到proxy的用户名，多个使用英文逗号分割，比如：user1,user2
+`user`：当前连接到proxy的用户名，多个使用英文逗号分割，比如：user1,user2
 
-ip：当前连接到proxy的客户端ip地址，多个使用英文逗号分割，比如：1.1.1.1,2.2.2.2
+`ip`：当前连接到proxy的客户端ip地址，多个使用英文逗号分割，比如：1.1.1.1,2.2.2.2
+
+`conns`: 当前所有正在连接到代理端口传输数据的tcp连接信息。conns值是一个json字符串，格式是一个数组，元素是一个对象，对象包含了连接的详细详细,  
+conns格式：`[{"id":"ab7bf1f10501d6f7","client":"127.0.0.1:62112","server":"127.0.0.1:9092","user":""}]`  
+对象字段说明：id：连接的唯一id，client：客户端IP地址和端口，server：客户端访问的代理IP和端口，user连接对应认证的用户名（如果有的话，没有为空）
 
 #### 控制接口返回数据说明
 
-控制接口返回的数据是无效的用户和IP，格式是一个json对象数据，有两个字段user和ip。
+控制接口返回的数据是无效的用户和IP或者连接，格式是一个json对象数据，有三个字段user、ip、conns，`conns`这个字段的处理，需要proxy版本大于等于`12.2`才可以。
+格式：`{"user":"a,b","ip":"",conns:["ab7bf1f10501d6f7","cb7bf1f10501d6f7"]}`
 
-比如：{"user":"a,b","ip":""}
+`user`：当前连接到proxy的用户名，多个使用英文逗号分割，没有留空，比如：user1,user2
 
-user：当前连接到proxy的用户名，多个使用英文逗号分割，没有留空，比如：user1,user2
+`ip`：当前连接到proxy的客户端ip地址，多个使用英文逗号分割，没有留空，比如：1.1.1.1,2.2.2.2
 
-ip：当前连接到proxy的客户端ip地址，多个使用英文逗号分割，没有留空，比如：1.1.1.1,2.2.2.2
+`conns`：是一个数组，元素是一个连接的id，这个id是上面`控制接口请求说明`里面的conns里面的连接对象的id字段。  
 
-返回的用户和ip已经建立的连接会被proxy断开。
+说明：  
+- 返回的用户和ip已经建立的连接会被proxy断开。
+- 返回的conns匹配的连接会被proxy断开。
+- 返回的数据，如果同时包含：user或者ip，和conns，那么user或者ip会被忽略，只会断开conns匹配的连接。
+- 对应的连接被关闭的同时，如果开启了认证缓存，会清除对应的`用户`或`IP`认证缓存。
 
 #### 示例
 
@@ -2241,7 +2240,8 @@ control.php内容如下：
 <?php  
 #接收proxy post过来的数据
 $userArr=explode(",",$_POST['user']);   
-$ipArr=$_GET['ip'];  
+$ipArr=$_POST['ip'];  
+$connsInfo=json_deocode($_POST['conns']);  
 
 //无效用户列表
 $badUsers=[]; 
@@ -2250,10 +2250,23 @@ foreach ($userArr as $user) {
     //逻辑判断用户$user是否无效,如果无效就放入$badUsers
     $badUsers[]=$user;
 }  
-$data=["user"=>implode(","$badUsers),"ip"=>""];
+$data=["user"=>implode(","$badUsers),"ip"=>"","conns"=>[]];
 
 echo json_encode($data);
 ```  
+
+如果代理连接数很大，代理control上报的POST的连接信息数据会比较大，此时可以使用参数`--control-gzip`开启gzip压缩POST的数据，
+但是服务端要解压对应的post的gzip数据，PHP示例代码如下：
+
+```php
+<?php
+parse_str(gzdecode(file_get_contents("php://input")),$query);
+$connsArr=json_decode($query["conns"]);
+$userArr=explode(",",$query["user"]);
+$ipArr=explode(",",$query["ip"]);
+$data=["user"=>"","ip"=>"","conns"=>[]];
+echo json_encode($data);
+```
 
 ### 使用代理
 
