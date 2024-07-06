@@ -18,10 +18,14 @@
 
 ## Purchase Commercial Edition
 
-This manual describes the functions, all of which are included in the commercial version; the free version of advanced functional parameters such as authentication is not included;  
-If you encounter some commands when you use the free version to execute some commands, a prompt similar to the following xxx parameter does not exist, indicating that this parameter is a function of the commercial version.   
+This manual describes the functions, all of which are included in the commercial version; the free version of advanced
+functional parameters such as authentication is not included;  
+If you encounter some commands when you use the free version to execute some commands, a prompt similar to the following
+xxx parameter does not exist, indicating that this parameter is a function of the commercial version.   
 `err: unknown long flag '-a'`   
-Comparison between the features of the free version and the commercial version, detailed operations on how to purchase and use the commercial version [please click here to view](https://snail007.host900.com/goproxy/page/free_vs_commercial_en/)
+Comparison between the features of the free version and the commercial version, detailed operations on how to purchase
+and use the commercial
+version [please click here to view](https://snail007.goproxyauth.com/goproxy/page/free_vs_commercial_en/)
 
 ## First Start
 
@@ -148,15 +152,15 @@ Http (s) agent, SPS agent, intranet penetration, tcp agent support the connectio
 The parameters are: --jumper, all the formats are as follows:
 
 ```text  
- http://username:password@host:port  
- http://host:port  
- https://username:password@host:port  
- https://host:port  
- socks5://username:password@host:port  
- socks5://host:port  
- socks5s://username:password@host:port  
- socks5s://host:port  
- ss://method:password@host:port  
+http://username:password@host:port  
+http://host:port  
+https://username:password@host:port  
+https://host:port  
+socks5://username:password@host:port  
+socks5://host:port  
+socks5s://username:password@host:port  
+socks5s://host:port  
+ss://method:password@host:port  
 ```  
 
 Http,socks5 represents the normal http and socks5 proxy.
@@ -365,7 +369,8 @@ If there is a upstream agent, then refer to the above tutorial to set the upstre
 `proxy http -t tcp -p :80,:443 -T tls -P "2.2.2.2:33080" -C proxy.crt -K proxy.key`
 
 Note:  
-The DNS resolution result of the server where the proxy is located cannot be affected by the custom resolution, otherwise it will be infinite loop. The proxy proxy should specify the `--dns 8.8.8.8` parameter.
+The DNS resolution result of the server where the proxy is located cannot be affected by the custom resolution,
+otherwise it will be infinite loop. The proxy proxy should specify the `--dns-address 8.8.8.8` parameter.
 
 ### 1.10 HTTP(S) Transparent Proxy
 This mode needs to have a certain network foundation. If the related concepts are not understood, please search for it yourself.  
@@ -419,6 +424,9 @@ For example:
 `proxy http -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
 
 `--dns-address` supports multiple dns addresses, load balancing, separated by comma. For example: `--dns-address "1.1.1.1:53,8.8.8.8:53"`
+
+You can also use the parameter `--dns-interface` to specify the bandwidth used for dns resolution,
+for example: `--dns-interface eth0`, dns resolution will use the eth0 bandwidth, this parameter must be set to `--dns-address` to be effective.
 
 ### 1.12 Custom encryption
 The proxy's http(s) proxy can encrypt tcp data via tls standard encryption and kcp protocol on top of tcp, in addition to support customization after tls and kcp.  
@@ -625,7 +633,10 @@ Host: the IP or domain name of the proxy
 Port: the port of the proxy
 
 ### 2.7 Specify Outgoing IP
-When the TCP proxy is a superior type (parameter: -T) is tcp, it supports the specified exit IP. Using the `--bind-listen` parameter, you can open the client to connect with the portal IP, and use the portal IP as the outgoing IP to access the target website. If an incorrect IP is bound, the proxy will not work, the proxy will try to bind the target without binding the IP, and the log will prompt.
+When the TCP proxy is a superior type (parameter: -T) is tcp, it supports the specified outgoing IP. Using
+the `--bind-listen` parameter, you can open the client to connect with the portal IP, and use the portal IP as the
+outgoing IP to access the target website. If an incorrect IP is bound, the proxy will not work, the proxy will try to
+bind the target without binding the IP, and the log will prompt.
 
 `proxy tcp -p ":33080" -T tcp -P" 192.168.22.33:22" -B`
 
@@ -643,9 +654,13 @@ Then the client access port `7777`, the  outgoing IP is `5.5.5.5`, access port `
 In addition, the `IP` part of the `--bind-ip` parameter supports specifying the `network interface name`, `wildcards`, and more than one can be specified. The detailed description is as follows:
 
 - Specify the network interface name, such as: `--bind-ip eth0:7777`, then the client accesses the `7777` port, and the egress IP is the IP of the eth0 network interface.
-- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
-- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the exit IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
-- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The  outgoing IP is the machine's network interface name matching `pppoe??`
+- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses
+  the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
+- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the
+  outgoing IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
+- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such
+  as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The outgoing IP is the machine's
+  network interface name matching `pppoe??`
   It is a randomly selected one among all IPs of the machine that matches `192.168.?.*`.
 - The wildcard character `*` represents 0 to any number of characters, and `?` represents 1 character.
 - If the IP of the network interface changes, it will take effect in real time.
@@ -1074,6 +1089,9 @@ And the analysis result cache time (--dns-ttl) seconds, to avoid system dns inte
 For example:  
 `proxy socks -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
 
+You can also use the parameter `--dns-interface` to specify the bandwidth used for dns resolution,
+for example: `--dns-interface eth0`, dns resolution will use the eth0 bandwidth, this parameter must be set to `--dns-address` to be effective.
+
 ### 5.10 Custom Encryption
 The proxy's socks proxy can encrypt tcp data through tls standard encryption and kcp protocol on top of tcp. In addition, it supports custom encryption after tls and kcp, which means that custom encryption and tls|kcp can be used together. The internal use of AES256 encryption, you only need to define a password when you use it.  
 Encryption is divided into two parts, one is whether the local (-z) encryption and decryption, and the other is whether the transmission with the upstream (-Z) is encrypted or decrypted.
@@ -1172,9 +1190,13 @@ Then the client access port `7777`, the  outgoing IP is `5.5.5.5`, access port `
 In addition, the `IP` part of the `--bind-ip` parameter supports specifying the `network interface name`, `wildcards`, and more than one. The details are as follows:
 
 - Specify the network interface name, such as: `--bind-ip eth0:7777`, then the client accesses the `7777` port, and the egress IP is the IP of the eth0 network interface.
-- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
-- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the exit IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
-- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The  outgoing IP is the machine's network interface name matching `pppoe??`
+- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses
+  the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
+- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the
+  outgoing IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
+- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such
+  as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The outgoing IP is the machine's
+  network interface name matching `pppoe??`
   It is a randomly selected one among all IPs of the machine that matches `192.168.?.*`.
 - The wildcard character `*` represents 0 to any number of characters, and `?` represents 1 character.
 - If the IP of the network interface changes, it will take effect in real time.
@@ -1205,25 +1227,48 @@ The default is: parent.
 The meaning of each value is as follows:  
 `--intelligent=direct`, the targets in the blocked are not directly connected.  
 `--intelligent=parent`, the target that is not in the direct is going to the higher level.  
-`--intelligent=intelligent`, blocked and direct have no targets, intelligently determine whether to use the upstream access target.
+`--intelligent=intelligent`, blocked and direct have no targets, intelligently determine whether to use the upstream
+access target.
 
 ### 5.18 Fixed UDP PORT
 
-By default, the port number of the UDP function of socks5, the proxy is installed in the `rfc1982 draft` request, which is randomly specified during the protocol handshake process and does not need to be specified in advance.
+By default, the port number of the UDP function of socks5, the proxy is installed in the `rfc1982 draft` request, which
+is randomly specified during the protocol handshake process and does not need to be specified in advance.
 
-However, in some cases, you need to fix the UDP function port. You can use the parameter `--udp-port port number` to fix the port number of the UDP function. For example:
+However, in some cases, you need to fix the UDP function port. You can use the parameter `--udp-port port number` to fix
+the port number of the UDP function. For example:
 
 `proxy socks -t tcp -p "0.0.0.0:38080" --udp-port 38080`
 
-### 5.19 Help
+### 5.19 UDP Compatibility Mode
+
+By default, the UDP functionality of the SOCKS5 proxy in the proxy operates in accordance with the SOCKS5 RFC 1928
+specification. However, there are certain SOCKS5 clients that do not adhere to the specified rules. To ensure
+compatibility with such clients, the `--udp-compat` parameter can be added to activate the compatibility mode for SOCKS5
+UDP functionality.
+
+Additionally, the `-udp-gc` parameter can be utilized to set the maximum idle time for UDP. When this time threshold is
+exceeded, UDP connections will be released.
+
+### 5.20 Help
+
 `proxy help socks`
 
 ## 6.SPS Protocol Convert
 
 ### 6.1 Function introduction
-The proxy protocol conversion uses the sps subcommand. The sps itself does not provide the proxy function. It only accepts the proxy request to "convert and forward" to the existing http(s) proxy or the socks5 proxy or ss proxy; the sps can put the existing http(s) proxy or socks5 proxy or ss proxy is converted to a port that supports both http(s) and socks5 and ss proxies, and the http(s) proxy supports forward proxy and reverse proxy (SNI), converted SOCKS5 proxy, UDP function is still supported when the upper level is SOCKS5 or SS; in addition, for the existing http(s) proxy or socks5 proxy, three modes of tls, tcp, and kcp are supported, and chain connection is supported, that is, multiple sps node levels can be supported. The connection builds an encrypted channel.
 
-The encryption methods supported by the `ss` function are: aes-128-cfb, aes-128-ctr, aes-128-gcm, aes-192-cfb, aes-192-ctr, aes-192-gcm, aes-256- Cfb , aes-256-ctr , aes-256-gcm , bf-cfb , cast5-cfb , chacha20 , chacha20-ietf , chacha20-ietf-poly1305 , des-cfb , rc4-md5 , rc4-md5-6 , salsa20 , Xchacha20
+The proxy protocol conversion uses the sps subcommand. The sps itself does not provide the proxy function. It only
+accepts the proxy request to "convert and forward" to the existing http(s) proxy or the socks5 proxy or ss proxy; the
+sps can put the existing http(s) proxy or socks5 proxy or ss proxy is converted to a port that supports both http(s) and
+socks5 and ss proxies, and the http(s) proxy supports forward proxy and reverse proxy (SNI), converted SOCKS5 proxy, UDP
+function is still supported when the upper level is SOCKS5 or SS; in addition, for the existing http(s) proxy or socks5
+proxy, three modes of tls, tcp, and kcp are supported, and chain connection is supported, that is, multiple sps node
+levels can be supported. The connection builds an encrypted channel.
+
+The encryption methods supported by the `ss` function are: aes-128-cfb, aes-128-ctr, aes-128-gcm, aes-192-cfb,
+aes-192-ctr, aes-192-gcm, aes-256- Cfb , aes-256-ctr , aes-256-gcm , bf-cfb , cast5-cfb , chacha20 , chacha20-ietf ,
+chacha20-ietf-poly1305 , des-cfb , rc4-md5 , rc4-md5-6 , salsa20 , Xchacha20
 
 Listen port argument `-p` can be:
 
@@ -1297,13 +1342,13 @@ Sps supports http(s)\socks5 proxy authentication, which can be cascaded and has 
 4: The authentication information `auth-info-to-parent` that is finally sent to the upstream.  
 Their situation is as follows:
 
-User-auth | local-auth | parent-auth | auth-info-to-paren
-| ------ | ------ | ------ | ------  
-| Yes / No | Yes | Yes | From parent-auth
-| Yes / No | No | Yes | From parent-auth
-| Yes / No | Yes | No | No
-| No | No | No | No
-| Yes | No | No | From user-auth
+| User-auth | local-auth | parent-auth | auth-info-to-paren |
+|-----------|------------|-------------|--------------------|
+| Yes / No  | Yes        | Yes         | From parent-auth   |
+| Yes / No  | No         | Yes         | From parent-auth   |
+| Yes / No  | Yes        | No          | No                 |
+| No        | No         | No          | No                 |
+| Yes       | No         | No          | From user-auth     |
 
 For the sps proxy we can perform username and password authentication. The authenticated username and password can be specified on the command line.  
 `proxy sps -S http -T tcp -P 127.0.0.1:8080 -t tcp -p ":33080" -a "user1:pass1:0:0:" -a "user2:pass2:0:0: "`  
@@ -1453,9 +1498,13 @@ Then the client access port `7777`, the  outgoing IP is `5.5.5.5`, access port `
 In addition, the `IP` part of the `--bind-ip` parameter supports specifying the `network interface name`, `wildcards`, and more than one. The details are as follows:
 
 - Specify the network interface name, such as: `--bind-ip eth0:7777`, then the client accesses the `7777` port, and the egress IP is the IP of the eth0 network interface.
-- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
-- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the exit IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
-- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The  outgoing IP is the machine's network interface name matching `pppoe??`
+- The network interface name supports wildcards, for example: `--bind-ip eth0.*:7777`, then the client accesses
+  the `7777` port, and the egress IP is a randomly selected one of the network interface IPs starting with `eth0.`.
+- IP supports wildcards, such as: `--bind-ip 192.168.?.*:7777`, then the client accesses the `7777` port, and the
+  outgoing IP is all the IPs of the machine, matching the IP of `192.168.?.*` A randomly selected one.
+- It can also be multiple combinations of network interface name and IP, separated by half-width commas, such
+  as: `--bind-ip pppoe??,192.168.?.*:7777`, then the client accesses the port `7777`, The outgoing IP is the machine's
+  network interface name matching `pppoe??`
   It is a randomly selected one among all IPs of the machine that matches `192.168.?.*`.
 - The wildcard character `*` represents 0 to any number of characters, and `?` represents 1 character.
 - If the IP of the network interface changes, it will take effect in real time.
@@ -1499,7 +1548,7 @@ It should be noted that the ss function of sps also has UDP function, and the UD
 
 To specify a port that is different from the tcp port.
 
-### 6.17 iptables 透明代理
+### 6.17 Iptables Transparent Proxy
 The sps mode supports the iptables transparent forwarding support of the Linux system, which is commonly referred to as the iptables transparent proxy. If a iptables transparent proxy is performed on the gateway device, the device that is connected through the gateway can realize a non-aware proxy.
 
 Example start command:
@@ -1546,16 +1595,40 @@ iptables -t nat -A OUTPUT -p tcp -j PROXY
 
 - Clear the entire chain iptables -F chain name such as iptables -t nat -F PROXY
 - Delete the specified user-defined chain iptables -X chain name e.g. iptables -t nat -X PROXY
-- Delete rule from selected chain iptables -D chain name rule details e.g. iptables -t nat -D PROXY -d 223.223.192.0/255.255.240.0 -j RETURN
+- Delete rule from selected chain iptables -D chain name rule details e.g. iptables -t nat -D PROXY -d
+  223.223.192.0/255.255.240.0 -j RETURN
 
-### 6.18 Help
+### 6.19 UDP Compatibility Mode
+
+By default, the UDP functionality of the SOCKS5 proxy in the proxy operates in accordance with the SOCKS5 RFC 1928
+specification. However, there are certain SOCKS5 clients that do not adhere to the specified rules. To ensure
+compatibility with such clients, the `--udp-compat` parameter can be added to activate the compatibility mode for SOCKS5
+UDP functionality.
+
+Additionally, the `-udp-gc` parameter can be utilized to set the maximum idle time for UDP. When this time threshold is
+exceeded, UDP connections will be released.
+
+### 6.20 Custom DNS
+
+The `--dns-address` and `--dns-ttl` parameters are used to specify the dns used by the proxy to access the domain name (`--dns-address`)
+As well as the number of seconds for caching the parsing results (--dns-ttl) to avoid the interference of the system dns on the proxy. 
+The additional caching function can also reduce the dns parsing time and improve the access speed.
+Translation:
+`Agent sps -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
+
+You can also use the parameter `--dns-interface` to specify the bandwidth used for dns resolution, 
+for example: `--dns-interface eth0`, dns resolution will use the eth0 bandwidth, this parameter must be set to `--dns-address` to be effective.
+
+### 6.21 Help
 
 `proxy help sps`
 
 ## 7.KCP Configuration
 
 ### 7.1 Configuration Introduction
-Many functions of the proxy support the kcp protocol. Any function that uses the kcp protocol supports the configuration parameters described here.  
+
+Many functions of the proxy support the kcp protocol. Any function that uses the kcp protocol supports the configuration
+parameters described here.  
 Therefore, the KCP configuration parameters are introduced here.
 
 ### 7.2 Detailed configuration
@@ -1757,22 +1830,55 @@ if($ok){
     header("userTotalRate:1024000");  
     //header("ipTotalRate:10240");  
     //header("portTotalRate:10240");  
+    //header("RotationTime:60");  
     header("HTTP/1.1 204 No Content");  
 }
 ```  
 
 #### HTTP HEADER Explanation
+
 `userconns`: The maximum number of connections for the user, not limited to 0 or not set this header.  
-`ipcons`: The maximum number of connections for the user IP, not limited to 0 or not set this header.  
+`ipconns`: The maximum number of connections for the user IP, not limited to 0 or not set this header.  
 `userrate`: User's single TCP connection rate limit, in bytes/second, is not limited to 0 or does not set this header.  
-`iprate`: The single TCP connection rate limit of the client IP, in bytes/second, not limited to 0 or not set this header.  
+`iprate`: The single TCP connection rate limit of the client IP, in bytes/second, not limited to 0 or not set this
+header.  
 `userqps`: The maximum number of connections per second (QPS) for the user, not limited to 0 or not set this header.  
-`ipqps`: The maximum number of connections per second (QPS) for the client IP, not limited to 0 or not set this header.  
+`ipqps`: The maximum number of connections per second (QPS) for the client IP, not limited to 0 or not set this
+header.  
 `upstream`: The upstream used, not empty, or not set this header.  
-`outgoing`: The outgoing ip，this option only working which upstream is empty. And the IP must belong to the machine running proxy。
-`userTotalRate`： Limit the `user` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not set this header.  
-`ipTotalRate`：Limit the `client ip` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not set this header.    
-`portTotalRate`：Limit the `server port` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not set this header.
+`outgoing`: The outgoing IP used. This setting is only effective when the upstream is empty.
+The IP set here must be owned by the machine where the proxy is located, otherwise, the proxy will not function
+properly.
+Starting from version `v13.2`, `outgoing` supports multiple subnet formats separated by commas. The proxy will randomly
+select an IP from the subnet as the outgoing IP. This randomness will also be keep when authentication cache is
+enabled.
+The following formats are supported for subnets:
+
+1. Format: `192.168.1.1`, Description: Single IP, IPv4
+1. Format: `3001:cb2::`, Description: Single IP, IPv6
+1. Format: `192.168.1.1/24`, Description: CIDR format subnet, IPv4
+1. Format: `3001:cb2::/126`, Description: CIDR format subnet, IPv6
+1. Format: `192.168.1.1-192.168.1.200`, Description: IP range, IPv4
+1. Format: `2311:ca2::-2311:ca2::10`, Description: IP range, IPv6
+
+Example: `192.16.1.1,192.161.1.2,192.168.1.2-192.168.1.255`
+
+`userTotalRate`： Limit the `user` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not set
+this header.  
+`ipTotalRate`：Limit the `client ip` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not set
+this header.    
+`portTotalRate`：Limit the `server port` total bandwidth speed (bytes per second), unit is byte, not limited to 0 or not
+set this header.  
+`RotationTime`: `(requires version >= v13.2)` Controls the time interval, in seconds, for randomly selecting the
+outgoing IP.
+Leave it blank or unset this header if not needed.When the outgoing returned by the API is a subnet, and if you don't
+want the proxy
+to randomly select a new IP for each client connection, you can use this parameter to control the time interval for
+random IP selection.
+If within the interval period, the previously selected IP will be used. If the API does not return the `RotationTime`
+header
+or if `RotationTime` is set to 0, the proxy will randomly select an IP from the outgoing subnet as the outgoing IP for
+each client connection.
 
 #### Details of total bandwidth speed limitation
 1. `userrate`、`iprate` and `userTotalRate`、`ipTotalRate`、`portTotalRate` can be set at same time,
@@ -1784,13 +1890,21 @@ if($ok){
 1. By default, `--auth-url` is required to provide the user name and password. If you do not need the client to provide the username and password, and authenticate, you can add `--auth-nouser`. The visit will still access the authentication address `--auth-url` for authentication. Only the $user authentication username and the $pass authentication password received in the php interface are empty when client didn't send username and password.
 2. Connection limit priority: User authentication file limit - "File ip.limit limit -" API user limit - "API IP limit -" command line global connection limit.
 3. Rate Limit Priority: User Authentication File Rate Limit - "File ip.limit Rate Limit -" API User Rate Limit - "API IP Rate Limit - "Command Line Global Rate Limit.
-3. The upstream obtains the priority: the upstream of the user authentication file - the file ip.limit upstream-"API upstream-" command line specifies the upstream.  
-   4.`--auth-cache` authentication cache, cache the authentication result for a certain period of time, improve performance, reduce the pressure on the authentication interface, --auth-cache unit seconds, default 0, set 0 to close the cache.
+4. The upstream obtains the priority: the upstream of the user authentication file - the file ip.limit upstream-"API
+   upstream-" command line specifies the upstream.
+5. `--auth-cache` authentication cache, cache the authentication result for a certain period of time, improve
+   performance, reduce the pressure on the authentication interface, --auth-cache unit seconds, default 0, set 0 to
+   close the cache.
+6. By default, `--auth-cache` only caches the results of successful authentication and does not cache the results of
+   failed authentication. If you need to cache the failed authentication results for a certain period of time,
+   It can be set through the parameter `-auth-fail-cache` to improve performance and reduce the pressure on the
+   authentication interface. The unit of --auth-fail-cache is seconds. The default is 0. Setting 0 turns off the cache.
 
 #### upstream detailed description
 
 1. When the parameter `sps` is 0.  
-   When the service is http, upstream only supports http(s) proxy, and does not support authentication. If authentication is required, it can be replaced by sps. Format:  
+   When the service is http, upstream only supports http(s) proxy, and does not support authentication.
+   If authentication is required, it can be replaced by sps. Format:  
    `http://127.0.0.1:3100?argk=argv`  
    When the service is a socks, the upstream only supports the socks5 proxy. The format is:  
    `socks5://127.0.0.1:3100?argk=argv`
@@ -1812,6 +1926,26 @@ Explanation: `http://`,`socks5://` is fixed, `127.0.0.1:3100` is the address of 
    8. key : The base64 encoded string of the higher-level tls transport type certificate key file.
    9. luminati:if upstram is luminati proxies，value can be: true or false。
 
+4.Upstream supports multiple instances, regardless of whether SPS is 1 or 0, and they are separated by semicolons ;.
+When connecting to an upstream, by default, one upstream is randomly chosen. However, it supports setting the weight
+parameter for each upstream.
+If the weight is set for any upstream, all upstreams must have the weight parameter set. The weight must be greater than
+0;
+otherwise, the weight is considered invalid, and random selection is applied.
+This selection logic is also working after the authentication cache is enabled.
+
+Examples of multiple upstreams:
+
+1. Example without weight settings: `http://127.0.0.1:3100?argk=argv;http://127.0.0.2:3100?argk=argv`
+2. Example with weight settings: `http://127.0.0.1:3100?argk=argv&weight=10;http://127.0.0.2:3100?argk=argv&weight=20`
+
+Weight selection logic:  
+When a weight is set for an upstream, it divides the total weight among the upstreams based on their order.
+For example, if there are two upstreams with weights 10 and 20 respectively, the total weight is 30.
+The first upstream's weight range is 1-10, and the second upstream's weight range is 11-30.
+This logic extends to more upstreams. Each time, a random number within the total weight range is chosen,
+and the corresponding upstream is selected based on this number's range.
+
 ### Traffic report / Traffic limit / Traffic statistics
 
 The proxy's http (s) / socks5 / sps / tcp / udp proxy function supports traffic reporting. You can set an http interface address through the parameter `--traffic-url`.
@@ -1819,28 +1953,42 @@ The proxy will report the traffic used for this connection to this address.Speci
 There are two reporting modes, which can be specified by the `--traffic-mode` parameter. It can be reported in the normal mode or in the fast mode.
 
 1. Report in `normal` normal mode  
-   When the connection is released, the proxy will report the traffic used for this connection to this `--traffic-url` address.
+   When the connection is released, the proxy will report the traffic used for this connection to this `--traffic-url`
+   address.
 
 2. Report in `fast` mode    
-   For each connection that has been established, the proxy will `timely` report the traffic generated by this connection to this` --traffic-url` address.  
-   `Timing` defaults to 5 seconds, and you can modify` Timing` to the appropriate number of seconds via the parameter `--traffic-interval`.
+   For each connection that has been established, the proxy will `timely` report the traffic generated by this
+   connection to this` --traffic-url` address.  
+   `Timing` defaults to 5 seconds, and you can modify` Timing` to the appropriate number of seconds via the
+   parameter `--traffic-interval`.
 
-The traffic reporting function combined with the above API authentication function can control the user's traffic usage in real time. The traffic is reported to the interface. The interface writes the traffic data to the database, and then the authentication API queries the database to determine the traffic usage and determine whether the user can be successfully authenticated.
+3. Report in `fast` global mode  
+   By default, if the API can't handle high concurrency report access, you can use the fast global mode,
+   Use the parameter `--fast-global` to open, this parameter is only valid when `--traffic-mode=fast`. In fast global
+   mode, for a `--traffic-url`,
+   no matter how many concurrent connections there are, only have one reporter, and the reporting interval is 5 seconds.
+   In this mode, the reporting request method is `POST`, `Content-Type` is `application/json`, the post body data
+   is `JSON Array`, example: `[{},{}]`, the keys of object in the array are same with the
+   following `Reqeust parameter description`.
+4. The traffic reporting function combined with the above API authentication function can control the user's traffic
+   usage in real time. The traffic is reported to the interface. The interface writes the traffic data to the database,
+   and then the authentication API queries the database to determine the traffic usage and determine whether the user
+   can be successfully authenticated.
 
 The following is a complete URL request example:
 
 `http://127.0.0.1:33088/user/traffic?bytes=337&client_addr=127.0.0.1%3A51035&id=http&server_addr =127.0.0.1%3A33088&target_addr=myip.ipip.net%3A80&username=a`
 
-Request parameter description:
-id: service id flag.
-server_addr: proxies's address requested by the client, format: IP: port.
-client_addr: client address, format: IP: port.
-target_addr: target address, format: "IP: port", when tcp / udp proxy, this is empty.
-User name: proxy authentication user name, this is empty when tcp / udp proxy.
-bytes: the number of traffic bytes used by the user.
-out_local_addr: outgoing tcp connection's local address,format: IP: port.
-out_remote_addr: outgoing tcp connection's remote address,format: IP: port.
-upstream: upstream used by outgoing tcp connection, if none upstream be used, it's empty.
+**Request parameter description:**  
+`id`: service id flag.  
+`server_addr`: proxies's address requested by the client, format: IP: port.  
+`client_addr`: client address, format: IP: port.  
+`target_addr`: target address, format: "IP: port", when tcp / udp proxy, this is empty.  
+`username`: proxy authentication user name, this is empty when tcp / udp proxy.  
+`bytes`: the number of traffic bytes used by the user.  
+`out_local_addr`: outgoing tcp connection's local address,format: IP: port.  
+`out_remote_addr`: outgoing tcp connection's remote address,format: IP: port.  
+`upstream`: upstream used by outgoing tcp connection, if none upstream be used, it's empty.
 
 #### Tips
 

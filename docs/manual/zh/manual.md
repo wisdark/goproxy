@@ -27,18 +27,18 @@
 
 以下软件都是相互独立使用，没有依赖关系，需要购买的也是分别单独购买使用。
 
-软件名称 | 免费版功能 | 商业版功能 | 购买使用 | 特点 | 传送门
-:----------- | :---: | :---: | :---: | :---: | :---:
-proxyadmin 免费版 |   √ |   x |   x| Web界面操作，支持Linux，Windows，macOS，免费使用，服务数量有限制，适合个人，小白和白嫖党 | [下载安装](https://github.com/snail007/proxy_admin_free)
-proxyadmin VIP版 |   √ |   x |   √| Web界面操作，支持更多平台，功能和免费版一样，服务数量无限制，适合个体户或者小集体 | [下载安装](https://github.com/snail007/proxy-admin-vip)
-proxyadmin 商业版 |   √ |   √ |   √|Web界面操作，支持更多平台，无限制，适合集体或公司对外提供服务 | [下载安装](https://github.com/snail007/proxy-admin-commercial)
-proxyadmin 集群版|   √ |   √ |   √|Web界面操作，支持Linux，Windows，macOS，无限制，配合`goproxy 商业版`,可以实现以组为单位，管理海量机器上的proxy服务，适合有大量机器的集体或公司对外提供服务 | [下载安装](https://github.com/snail007/proxy-admin-cluster)
-goproxy 免费版 |   √ |   x |   x|命令行操作，全平台支持，免费使用，稳定且灵活，适合一切熟悉命令行的大佬或集体或公司白嫖，自用或者大规模部署对外服务 | [下载安装](https://github.com/snail007/goproxy)
-goproxy 商业版|   √ |   √ |   √|命令行操作，全平台支持，稳定且灵活，适合集体或公司大规模部署对外提供服务 | [下载安装](https://github.com/snail007/goproxy)
+| 软件名称            | 免费版功能 | 商业版功能 | 购买使用 |                                               特点                                                |                            传送门                             |
+|:----------------|:-----:|:-----:|:----:|:-----------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|
+| proxyadmin 免费版  |   √   |   x   |  x   |                     Web界面操作，支持Linux，Windows，macOS，免费使用，服务数量有限制，适合个人，小白和白嫖党                      |    [下载安装](https://github.com/snail007/proxy_admin_free)    |
+| proxyadmin VIP版 |   √   |   x   |  √   |                           Web界面操作，支持更多平台，功能和免费版一样，服务数量无限制，适合个体户或者小集体                            |    [下载安装](https://github.com/snail007/proxy-admin-vip)     |
+| proxyadmin 商业版  |   √   |   √   |  √   |                                Web界面操作，支持更多平台，无限制，适合集体或公司对外提供服务                                 | [下载安装](https://github.com/snail007/proxy-admin-commercial) |
+| proxyadmin 集群版  |   √   |   √   |  √   | Web界面操作，支持Linux，Windows，macOS，无限制，配合`goproxy 商业版`,可以实现以组为单位，管理海量机器上的proxy服务，适合有大量机器的集体或公司对外提供服务 |  [下载安装](https://github.com/snail007/proxy-admin-cluster)   |
+| goproxy 免费版     |   √   |   x   |  x   |                    命令行操作，全平台支持，免费使用，稳定且灵活，适合一切熟悉命令行的大佬或集体或公司白嫖，自用或者大规模部署对外服务                    |        [下载安装](https://github.com/snail007/goproxy)         |
+| goproxy 商业版     |   √   |   √   |  √   |                              命令行操作，全平台支持，稳定且灵活，适合集体或公司大规模部署对外提供服务                               |        [下载安装](https://github.com/snail007/goproxy)         |
 
-关于免费版功能和商业版功能对比请看这里,[`免费版`和`商业版`功能对比](https://snail007.host900.com/goproxy/page/free_vs_commercial/).
+关于免费版功能和商业版功能对比请看这里,[`免费版`和`商业版`功能对比](https://snail007.goproxyauth.com/goproxy/page/free_vs_commercial/).
 
-[商业版激活绑定教程](https://snail007.host900.com/goproxy/page/free_vs_commercial/)
+[商业版激活绑定教程](https://snail007.goproxyauth.com/goproxy/page/free_vs_commercial/)
 
 提示：
 
@@ -46,7 +46,7 @@ goproxy 商业版|   √ |   √ |   √|命令行操作，全平台支持，稳
 
 ## FAQ
 
-[别点我](https://snail007.host900.com/goproxy/page/faq/goproxy%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94/)
+[别点我](https://snail007.goproxyauth.com/goproxy/page/faq/goproxy%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E7%AD%94/)
 
 ## 首次使用必看,谢谢!!！
 
@@ -381,7 +381,7 @@ proxy不仅支持在其他软件里面通过设置代理的方式，为其他软
 `proxy http -t tcp -p :80,:443 -T tls -P "2.2.2.2:33080" -C proxy.crt -K proxy.key`
 
 注意:  
-proxy所在的服务器的DNS解析结果不能受到自定义的解析影响，不然就死循环了，proxy代理最好指定`--dns 8.8.8.8`参数。
+proxy所在的服务器的DNS解析结果不能受到自定义的解析影响，不然就死循环了，proxy代理最好指定`--dns-address 8.8.8.8`参数。
 
 ### 1.10 HTTP(S)透明代理
 
@@ -439,6 +439,8 @@ iptables -t nat -A OUTPUT -p tcp -j PROXY
 `proxy http -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
 
 `--dns-address` 支持设置多个dns地址，负载均衡，英文半角逗号分割。比如：--dns-address "1.1.1.1:53,8.8.8.8:53"
+
+还可以用参数`--dns-interface`指定dns解析使用的网卡，比如：`--dns-interface eth0`，dns解析就会走eth0网卡，此参数必须设置`--dns-address`才有效。  
 
 ### 1.12 自定义加密
 
@@ -1164,6 +1166,8 @@ KCP协议需要--kcp-key参数设置一个密码用于加密解密数据
 比如：  
 `proxy socks -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
 
+还可以用参数`--dns-interface`指定dns解析使用的网卡，比如：`--dns-interface eth0`，dns解析就会走eth0网卡，此参数必须设置`--dns-address`才有效。  
+
 ### 5.10 自定义加密
 
 proxy的socks代理在tcp之上可以通过tls标准加密以及kcp协议加密tcp数据，除此之外还支持在tls和kcp之后进行自定义加密，也就是说自定义加密和tls|kcp是可以联合使用的，内部采用AES256加密，使用的时候只需要自己定义一个密码即可，  
@@ -1319,7 +1323,14 @@ SOCKS5支持级联认证，-A可以设置上级认证信息。
 
 `proxy socks -t tcp -p "0.0.0.0:38080" --udp-port 38080`
 
-### 5.19 查看帮助
+### 5.19 UDP兼容模式
+
+默认情况下，proxy的socks5代理的UDP功能是按着socks5 RFC 1928 规范实现的，但是存在某些不遵守规范的socks5客户端，
+为了兼容这些客户端，可以加上--udp-compat参数，用于打开socks5 udp功能的兼容模式。
+
+另外可以：使用-udp-gc参数，用来设置UDP最大空闲时间，超过这个时间，UDP会被释放。
+
+### 5.20 查看帮助
 
 `proxy help socks`
 
@@ -1327,8 +1338,10 @@ SOCKS5支持级联认证，-A可以设置上级认证信息。
 
 ### 6.1 功能介绍
 
-代理协议转换使用的是sps子命令，sps可以把已经存在的http(s)代理或者socks5代理或ss代理转换为一个端口同时支持http(s)和socks5和ss的代理，而且http(s)代理支持正向代理和反向代理(SNI)
-，当上级是SOCKS5时,转换后的SOCKS5或者SS代理仍然支持UDP功能；另外对于已经存在的http(s)代理或者socks5代理，支持tls、tcp、kcp三种模式，支持链式连接，也就是可以多个sps结点层级连接构建加密通道。
+代理协议转换使用的是sps子命令，sps可以把已经存在的http(s)代理或者socks5代理或ss代理转换为一个端口同时支持http(s)
+和socks5和ss的代理，而且http(s)代理支持正向代理和反向代理(SNI)
+，当上级是SOCKS5时,转换后的SOCKS5或者SS代理仍然支持UDP功能；另外对于已经存在的http(s)
+代理或者socks5代理，支持tls、tcp、kcp三种模式，支持链式连接，也就是可以多个sps结点层级连接构建加密通道。
 
 `ss`功能支持的加密方法为:aes-128-cfb ， aes-128-ctr ， aes-128-gcm ， aes-192-cfb ， aes-192-ctr ， aes-192-gcm ， aes-256-cfb ，
 aes-256-ctr ， aes-256-gcm ， bf-cfb ， cast5-cfb ， chacha20 ， chacha20-ietf ， chacha20-ietf-poly1305 ， des-cfb ， rc4-md5 ，
@@ -1419,13 +1432,13 @@ sps支持http(s)\socks5代理认证，可以级联认证，有四个重要的信
 4:最终发送给上级的认证信息`auth-info-to-parent`。  
 他们的情况关系如下:
 
-| user-auth | local-auth | parent-auth | auth-info-to-paren
-| ------ | ------ | ------ | ------  
-| 有/没有  | 有     |     有   |   来自parent-auth
-| 有/没有  | 没有    |    有    |   来自parent-auth
-| 有/没有  | 有     |     没有  |   无
-| 没有   | 没有    |   没有    |   无
-| 有    | 没有    |   没有    |   来自user-auth
+| user-auth | local-auth | parent-auth | auth-info-to-paren |
+|-----------|------------|-------------|--------------------|
+| 有/没有      | 有          | 有           | 来自parent-auth      |
+| 有/没有      | 没有         | 有           | 来自parent-auth      |
+| 有/没有      | 有          | 没有          | 无                  |
+| 没有        | 没有         | 没有          | 无                  |
+| 有         | 没有         | 没有          | 来自user-auth        |
 
 对于sps代理我们可以进行用户名密码认证，认证的用户名和密码可以在命令行指定  
 `proxy sps -S http -T tcp -P 127.0.0.1:8080 -t tcp -p ":33080" -a "user1:pass1:0:0:" -a "user2:pass2:0:0:"`  
@@ -1690,7 +1703,23 @@ iptables -t nat -A OUTPUT -p tcp -j PROXY
 - 删除指定的用户自定义链 iptables -X 链名 比如 iptables -t nat -X PROXY
 - 从所选链中删除规则 iptables -D 链名 规则详情 比如 iptables -t nat -D PROXY -d 223.223.192.0/255.255.240.0 -j RETURN
 
-### 6.18 查看帮助
+### 6.19 UDP兼容模式
+
+默认情况下，proxy的socks5代理的UDP功能是按着socks5 RFC 1928 规范实现的，但是存在某些不遵守规范的socks5客户端，
+为了兼容这些客户端，可以加上--udp-compat参数，用于打开socks5 udp功能的兼容模式。
+
+另外可以：使用-udp-gc参数，用来设置UDP最大空闲时间，超过这个时间，UDP会被释放。
+
+### 6.20 自定义DNS
+
+--dns-address和--dns-ttl参数，用于自己指定proxy访问域名的时候使用的dns（--dns-address）  
+以及解析结果缓存时间（--dns-ttl）秒数，避免系统dns对proxy的干扰，另外缓存功能还能减少dns解析时间提高访问速度。  
+比如：  
+`proxy sps -p ":33080" --dns-address "8.8.8.8:53" --dns-ttl 300`
+
+还可以用参数`--dns-interface`指定dns解析使用的网卡，比如：`--dns-interface eth0`，dns解析就会走eth0网卡，此参数必须设置`--dns-address`才有效。  
+
+### 6.21 查看帮助
 
 `proxy help sps`
 
@@ -1848,7 +1877,7 @@ proxy的http(s)/socks5/sps代理功能，支持通过API控制用户对代理对
 
 #### 具体使用
 
-proxy的http(s)/socks5/sps代理API功能，通过`--auth-url`和`--auth-nouser`和`--auth-cache`三个参数控制。  
+proxy的http(s)/socks5/sps代理API功能，通过`--auth-url`、`--auth-nouser`、`--auth-cache`、`--auth-fail-cache`4个参数控制。  
 参数`--auth-url`是HTTP API接口地址，客户端连接的时候，proxy会GET方式请求这url，带上下面参数，如果返回HTTP状态码204，代表认证成功，其它情况认为认证失败。
 
 一个完整的请求API的示例：  
@@ -1908,6 +1937,7 @@ if($ok){
     header("userTotalRate:1024000");  
     //header("ipTotalRate:10240");  
     //header("portTotalRate:10240");  
+    //header("RotationTime:60");  
     header("HTTP/1.1 204 No Content");  
 }
 ```  
@@ -1921,25 +1951,45 @@ if($ok){
 - `userqps`：用户每秒可以建立的最大连接数，不限制为0或者不设置这个头部。
 - `ipqps`：IP每秒可以建立的最大连接数，不限制为0或者不设置这个头部。
 - `upstream`：使用的上级，没有为空，或者不设置这个头部。
-- `outgoing`: 使用的出口IP，这个设置，只有在upstream为空的的时候才有效，这里设置的IP必须是proxy所在机器具有的IP。
+- `outgoing`: 使用的出口IP，这个设置，只有在upstream为空的时候才有效，这里设置的IP必须是proxy所在机器具拥有的IP，否则代理将不能正常工作。
+  `v13.2`版本起，`outgoing` 支持多`网段`写法，逗号分割的多个`网段`，proxy会随机选择`网段`里面的一个IP作为出口。认证缓存开启后也会保持这个随机性。
+  `网段`支持下面几种写法：
+  1. 格式：`192.168.1.1`，说明：单个IP, IPv4
+  1. 格式：`3001:cb2::`，说明：单个IP, IPv6
+  1. 格式：`192.168.1.1/24`，说明：CIDR格式网段，IPv4
+  1. 格式：`3001:cb2::/126`，说明：CIDR格式网段，IPv6
+  1. 格式：`192.168.1.1-192.168.1.200`，说明：IP范围，IPv4
+  1. 格式：`2311:ca2::-2311:ca2::10`，说明：IP范围，IPv6
+
+  示例: `192.16.1.1,192.161.1.2,192.168.1.2-192.168.1.255`
 - `userTotalRate`：用户维度，限制用户的总带宽速度（byte/s），单位是字节byte，没有留空，或者不设置这个头部。
 - `ipTotalRate`：客户端IP维度，限制客户端IP的总带宽速度（byte/s），单位是字节byte，没有留空，或者不设置这个头部。
 - `portTotalRate`：带宽维度，限制一个带宽总带宽速度（byte/s），单位是字节byte，没有留空，或者不设置这个头部。
+- `RotationTime`：`（要求版本>=v13.2）`，控制随机选择outgoing出口IP的时间间隔，单位是秒，没有留空，或者不设置这个头部。
+  当API返回的outgoing是网段的时候，每次客户端连接，如果不想让proxy每次都随机选择一个IP，可以使用这个参数控制随机选择IP的时间间隔。
+  如果在间隔周期内，则使用上一次随机选择的IP。 如果API没有返回头部参数 RotationTime，或者RotationTime是0，
+  那么每次客户端连接，proxy都随机选择一个outgoing网段里面的一个IP作为出口。
 
 #### 限速详细说明
+
 1. 单个tcp限速（`userrate`、`iprate`）和总带宽速度（`userTotalRate`、`ipTotalRate`、`portTotalRate`）可以同时设置，
    比如：设置用户总带宽速度是1M/s（`userTotalRate`设置1024000），还可以同时设置单个tcp速度是100K/s（`userrate`设置102400）
-2. 如果同时设置了`userTotalRate`、`ipTotalRate` 、`portTotalRate`，有效优先级是：`userTotalRate` -> `ipTotalRate` -> `portTotalRate`
-3. 如果同时设置了`userTotalRate`、`portTotalRate`，而且设置了`--auth-nouser`，那么所有没有发用户名的客户端会被认为是`同一个空用户名用户`，共用同一个限制。
+2. 如果同时设置了`userTotalRate`、`ipTotalRate` 、`portTotalRate`
+   ，有效优先级是：`userTotalRate` -> `ipTotalRate` -> `portTotalRate`
+3. 如果同时设置了`userTotalRate`、`portTotalRate`，而且设置了`--auth-nouser`
+   ，那么所有没有发用户名的客户端会被认为是`同一个空用户名用户`，共用同一个限制。
 
 #### 提示
 
-1. 默认情况下，设置了`--auth-url`是强制要求客户端提供用户名和密码的；如果不需要强制要求客户端提供用户名密码，并认证，可以加上`--auth-nouser`，每次访问仍然会访问认证地址`--auth-url`
-   进行认证，当客户端没有发生认证信息当时候，php接口里面接收的$user认证用户名和$pass认证密码都为空。
+1. 默认情况下，设置了`--auth-url`
+   是强制要求客户端提供用户名和密码的；如果不需要强制要求客户端提供用户名密码，并认证，可以加上`--auth-nouser`，
+   每次访问仍然会访问认证地址`--auth-url`进行认证，当客户端没有发生认证信息当时候，php接口里面接收的$user认证用户名和$pass认证密码都为空。
 2. 连接数限制优先级：用户认证文件连接数限制-》文件ip.limit连接数限制-》API用户连接数限制-》API的IP连接数限制-》命令行全局连接数限制。
 3. 速率限制优先级：用户认证文件速率限制-》文件ip.limit速率限制-》API用户速率限制-》API的IP速率限制-》命令行全局速率限制。
 4. 上级获取优先级：用户认证文件的upstream-》文件ip.limit的upstream-》API的upstream-》命令行指定的上级。
-5. `--auth-cache`认证缓存，对认证结果缓存一定时间，提升性能，降低认证接口压力，--auth-cache 单位秒，默认0, 设置0是关闭缓存。
+5. `--auth-cache`认证成功缓存，对认证成功结果缓存一定时间，提升性能，降低认证接口压力，--auth-cache 单位秒，默认0, 设置0是关闭缓存。
+6. 默认情况下`--auth-cache`只缓存认证成功的结果，对认证失败的结果不缓存，如果需要缓存失败的认证结果一定时间，
+   可以通过参数`-auth-fail-cache`设置，提升性能，降低认证接口压力，--auth-fail-cache 单位秒，默认0, 设置0是关闭缓存。
 
 #### upstream详细说明
 
@@ -1966,6 +2016,21 @@ upstream支持socks5、http(s)代理，支持认证，格式：`protocol://a:b@2
 8. key : 上级底层tls传输类型的证书密钥文件经过base64编码后的字符串。
 9. luminati:上级是否是luminati代理，可以是：true | false。
 
+4.upstream支持多个，无论sps是1还是0，都支持多个upstream，写法是多个用分号;分隔。
+当连接上级的时候默认是随机选择一个upstream。 但是支持通过weight参数设置每个upstream的权重，
+如果设置了权重全部的upstream都必须设置weight参数，weight必须大于0， 否则权重视为无效，做随机选择处理。
+认证缓存开启后也会保持这个选择逻辑。
+
+多个upstream示例：
+
+1. 不设置权重示例：`http://127.0.0.1:3100?argk=argv;http://127.0.0.2:3100?argk=argv`
+1. 设置权重示例：`http://127.0.0.1:3100?argk=argv&weight=10;http://127.0.0.2:3100?argk=argv&weight=20`
+
+权重选择逻辑：  
+当upstream设置了权重，会按着upstream顺序，设置每个upstream的数值范围。
+比如有两upstream，第一个权重是10，第二个权重是20，那么总数值是30，第1个upstream的数值范围是1-10，第2个upstream的数值范围是11-30，
+更多个upstream依次类推。然后每次选择的时候在1-30内随机一个数，然后选择这个数所在范围的那个upstream。
+
 ### 流量上报/流量统计/流量限制
 
 proxy的http(s)/socks5/sps/tcp/udp代理功能支持流量上报,可以通过参数`--traffic-url`设置一个http接口地址。  
@@ -1976,24 +2041,31 @@ proxy会把连接使用的流量上报到这个地址,具体情况是,proxy发�
    当连接释放时,proxy会把此次连接使用的流量上报到这个`--traffic-url`地址.
 2. `fast`快速模式上报  
    对已经建立的每个连接，proxy会`定时`把这个连接产生的流量上报到这个这个`--traffic-url`地址.    
-   `定时`默认是5秒，可以通过参数`--traffic-interval`修改`定时`为合适的秒数。   
-   流量上报功能结合上面的API认证功能可以实现实时控制用户的流量使用,流量统计,流量限制;流量上报到接口,接口把流量数据写入数据库,然后认证API查询数据库判断用户或者IP流量使用情况,用来确定用户是否可以认证成功.
+   `定时`默认是5秒，可以通过参数`--traffic-interval`修改`定时`为合适的秒数。  
+   默认情况下，快速上报是单个TCP链接维度，定时上报的，也就是说有1000个TCP链接，那么就会有1000的并发上报
+3. `fast`快速模式全局上报   
+   默认情况下，如果API接口处理并发能力不足，可以使用fast全局模式，  
+   使用参数`--fast-global`开启，此参数只有`--traffic-mode=fast`的时候有效。fast全局模式，针对一个`--traffic-url`，  
+   无论多少并发连接，只会开启一个定时上报，`定时`是5秒。  
+   此模式下，上报请求方式是`POST`,`Content-Type`是`application/json`,数据是`JSON 数组`,示例：`[{},{}]`
+   ，数组里面的对象字段和下面的`请求参数说明`里面一致。
+4. 流量上报功能结合上面的API认证功能可以实现实时控制用户的流量使用,流量统计,流量限制;流量上报到接口,接口把流量数据写入数据库,然后认证API查询数据库判断用户或者IP流量使用情况,用来确定用户是否可以认证成功.
 
 下面是一个完整的URL请求实例:
 
 `http://127.0.0.1:8080/auth.php?act=traffic&bytes=7627&client_addr=127.0.0.1%3A63637
 &id=http&out_local_addr=127.0.0.1%3A63640&out_remote_addr=127.0.0.1%3A63639 &server_addr=127.0.0.1%3A33080&target_addr=www.baidu.com%3A443 &upstream=http%3A%2F%2F127.0.0.1%3A3100&username=a`
 
-请求参数说明:
-id: 服务id标志。  
-server_addr: 客户端请求的代理地址,格式: `IP:端口`。  
-client_addr: 客户端地址,格式: `IP:端口`。  
-target_addr: 目标地址,格式: `IP:端口`,tcp/udp代理时,这个是空。  
-username: 代理认证用户名,tcp/udp代理时,这个是空。  
-bytes: 此次使用的流量字节数。  
-out_local_addr: 代理对外建立的TCP连接的本地地址，格式: `IP:端口`。  
-out_remote_addr: 代理对外建立的TCP连接的远程地址，格式: `IP:端口`。  
-upstream: 使用的上级，格式是标准URL格式，如果没有使用上级，这里是空。
+**请求参数说明**:    
+`id`: 服务id标志。   
+`server_addr`: 客户端请求的代理地址,格式: `IP:端口`。  
+`client_addr`: 客户端地址,格式: `IP:端口`。  
+`target_addr`: 目标地址,格式: `IP:端口`,tcp/udp代理时,这个是空。  
+`username`: 代理认证用户名,tcp/udp代理时,这个是空。  
+`bytes`: 此次使用的流量字节数。  
+`out_local_addr`: 代理对外建立的TCP连接的本地地址，格式: `IP:端口`。  
+`out_remote_addr`: 代理对外建立的TCP连接的远程地址，格式: `IP:端口`。   
+`upstream`: 使用的上级，格式是标准URL格式，如果没有使用上级，这里是空。
 
 #### 提示
 
